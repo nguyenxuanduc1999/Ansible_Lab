@@ -1,0 +1,22 @@
+##############################################################
+### Write config | WARNING: Your IP and your key <= Change ###
+##############################################################
+
+[Bastion]
+3.112.238.79
+
+[webserver]
+172.31.39.138
+[webserver:vars]
+ansible_ssh_common_args="-o ProxyCommand=\"ssh -q ec2-user@3.112.238.79 -o IdentityFile=/home/xdn/keytokyo.pem -o Port=22 -W %h:%p\""
+
+[all:vars]
+ansible_ssh_private_key_file=/home/xdn/keytokyo.pem
+ansible_user=ec2-user
+
+## ! Change !
+# line 6: 3.112.238.79
+# line 9: 172.31.39.138
+# line 11: 3.112.238.79
+# line 11: /home/xdn/keytokyo.pem
+# line 14: /home/xdn/keytokyo.pem
