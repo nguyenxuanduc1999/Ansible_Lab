@@ -10,5 +10,5 @@ vi /etc/ansible/hosts
 
 edit content in hosts file
 ## Run with command
-sudo ansible-playbook wordpress.yml
+sudo ansible-playbook wordpress_centos_7.yml
 
