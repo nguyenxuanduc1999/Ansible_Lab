@@ -1,16 +1,23 @@
 ---
-  - name: enable epel-release
-    yum:
-      name: '{{ item }}'
-      state: present
+  - name: Config version PHP
+    yum: name= {{item}} state=present update_cache=true
     with_items:
-    - epel-release
-    - yum-utils
+      - epel-release
+      - yum-utils
+      - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+      
+#   - name: enable epel-release
+#     yum:
+#       name: '{{ item }}'
+#       state: present
+#     with_items:
+#     - epel-release
+#     - yum-utils
   
-  - name: install remi
-    yum:
-      name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-      state: present
+#   - name: install remi
+#     yum:
+#       name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+#       state: present
   
   - name: enable php 7.4
     command: yum-config-manager --enable remi-php74
@@ -99,13 +106,6 @@
       path: /var/www/html/wp-config.php
       regexp: 'password_here'
       replace: 'wordpresspassword'
-
-  - name: Config version PHP
-    yum: name= {{item}} state=present update_cache=true
-    with_items:
-      - epel-release
-      - yum-utils
-      - http://rpms.remirepo.net/enterprise/remi-release-7.rpm
   
   - name: Config version PHP
     shell: sudo yum-config-manager --enable remi-php74
