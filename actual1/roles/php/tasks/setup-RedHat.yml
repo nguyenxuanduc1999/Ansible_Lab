@@ -1,0 +1,17 @@
+---
+- name: Enable php74 and epel repositories
+  shell: "amazon-linux-extras enable epel -y"
+
+- name: enable php7.4
+  shell: "sudo amazon-linux-extras enable php7.4"
+
+# - name: Install the remi-release-7 repo.
+#   yum:
+#     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+#     state: present
+
+- name: Ensure PHP packages are installed. #da install goi 7.4
+  package:
+    name: "{{ php_packages }}"
+    state: "{{ php_packages_state }}"
+    #enablerepo: "{{ php_enablerepo | default(omit, true) }}"

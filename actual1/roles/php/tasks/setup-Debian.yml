@@ -1,0 +1,21 @@
+---
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: Add php repository
+  apt_repository:
+    repo: ppa:ondrej/php
+
+- name: Ensure PHP packages are installed.
+  apt:
+    name: "{{ php_packages }}"
+    state: "{{ php_packages_state }}"
+    install_recommends: "{{ php_install_recommends }}"
+  register: php_package_install
+
+- name: Stop Apache service( for another web servers)
+  service:
+    state: stopped
+    name: apache2
+    enabled: no
+  when: "'apache2' not in role_names"

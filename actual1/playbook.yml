@@ -1,0 +1,17 @@
+---
+# trong - node co' (yarn)
+- hosts: test
+  become: yes
+  roles:
+    # - nginx
+    - nodejs
+# - hosts: BE-AMI
+#   become: yes
+#   roles:
+#     - java
+#     - nginx
+# - hosts: FE-AMI
+#   become: yes
+#   roles:
+#     - nodejs #FE
+#     # - nginx

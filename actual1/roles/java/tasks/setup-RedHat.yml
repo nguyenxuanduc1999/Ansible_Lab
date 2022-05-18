@@ -1,0 +1,5 @@
+- name: Ensure Java is installed.
+  command: amazon-linux-extras install java-openjdk11 -y
+  # package:
+  #   name: "{{ java_packages }}"
+  #   state: present

@@ -1,0 +1,13 @@
+- name: Install the MySQL repo.
+  yum:
+   name: http://repo.mysql.com/mysql{{mysql_rh_version}}-community-release-el7.rpm
+   state: present
+  register: mysqlrepo
+
+- name: Ensure MySQL packages are installed.
+  yum: "name={{ __mysql_packages }} state=present"
+  when: mysqlrepo is changed
+  register: rh_mysql_install_packages
+
+- name: Ensure MySQL Python libraries are installed.
+  yum: "name=MySQL-python state=present "
